@@ -20,11 +20,13 @@ download_alpine_iso() {
 # Crea una nuova immagine ISO con lo script incorporato
 create_custom_iso() {
     # Estrai il contenuto dell'immagine Alpine
-    mkdir alpine-root
+    mkdir -p alpine-root/apks/x86_64
     tar -xzf alpine-minirootfs.tar.gz -C alpine-root
 
     # Copia lo script nella directory root
     cp admin.sh alpine-root/
+    cp apks/x86_64/ntfs-3g-2022.10.3-r3.apk alpine-root/apks/x86_64
+    cp apks/x86_64/ntfs-3g-libs-2022.10.3-r3.apk alpine-root/apks/x86_64
 
     # Crea una nuova immagine ISO
     xorriso -as mkisofs -o custom-boot.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table alpine-root
