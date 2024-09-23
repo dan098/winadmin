@@ -50,7 +50,7 @@ echo ""
 echo "  - Adding restore.bat to System32..."
 cat > /mnt/Windows/System32/restore.bat << EOF
 @echo off
-start cmd.exe /c "timeout 3 & net user Admin /delete & del /f restore.bat & del /f add-user.bat & del /f remove-user.bat & copy Utilman.exe.bak Utilman.exe /y & echo Finished restoring Utilman.exe and deleted scripts! & timeout 5" & exit
+start cmd.exe /c "timeout 3 & net user Backup /delete & del /f restore.bat & del /f add-user.bat & del /f remove-user.bat & copy Utilman.exe.bak Utilman.exe /y & echo Finished restoring Utilman.exe and deleted scripts! & timeout 5" & exit
 EOF
 
 # Add add-user.bat to System32
@@ -60,7 +60,7 @@ cat > /mnt/Windows/System32/add-user.bat << EOF
 @echo off
 net user Backup P4ssw.rd! /add
 net localgroup administrators Backup /add
-echo Finished creating Admin user!
+echo Finished creating Backup user!
 EOF
 
 # Add remove-user.bat to System32
